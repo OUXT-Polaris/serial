@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="3">
   <name>serial</name>
   <version>1.2.1</version>
   <description>
@@ -21,7 +21,10 @@
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
+  <build_depend>ament_cmake_auto</build_depend>
+
   <test_depend>ouxt_common</test_depend>
+  <test_depend>ament_lint_auto</test_depend>
   <!--<test_depend>boost</test_depend>-->
   <!-- The export tag contains other, unspecified, tags -->
   <export>
