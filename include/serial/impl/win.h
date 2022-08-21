@@ -4,7 +4,6 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-
 /*!
  * \file serial/impl/windows.h
  * \author  William Woodall <wjwwood@gmail.com>
