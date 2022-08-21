@@ -17,10 +17,10 @@ void loop()
  
 */
 
-#include <string>
-#include "gtest/gtest.h"
-
 #include <boost/bind.hpp>
+#include <string>
+
+#include "gtest/gtest.h"
 
 // Use FRIEND_TEST... its not as nasty, thats what friends are for
 // // OMG this is so nasty...
@@ -39,11 +39,13 @@ using namespace serial;
 
 using std::string;
 
-namespace {
-
-class SerialTests : public ::testing::Test {
+namespace
+{
+class SerialTests : public ::testing::Test
+{
 protected:
-  virtual void SetUp() {
+  virtual void SetUp()
+  {
     if (openpty(&master_fd, &slave_fd, name, NULL, NULL) == -1) {
       perror("openpty");
       exit(127);
@@ -56,7 +58,8 @@ protected:
     port1 = new Serial(string(name), 115200, Timeout::simpleTimeout(250));
   }
 
-  virtual void TearDown() {
+  virtual void TearDown()
+  {
     port1->close();
     delete port1;
   }
@@ -67,38 +70,42 @@ protected:
   char name[100];
 };
 
-TEST_F(SerialTests, readWorks) {
+TEST_F(SerialTests, readWorks)
+{
   write(master_fd, "abc\n", 4);
   string r = port1->read(4);
   EXPECT_EQ(r, string("abc\n"));
 }
 
-TEST_F(SerialTests, writeWorks) {
+TEST_F(SerialTests, writeWorks)
+{
   char buf[5] = "";
   port1->write("abc\n");
   read(master_fd, buf, 4);
   EXPECT_EQ(string(buf, 4), string("abc\n"));
 }
 
-TEST_F(SerialTests, timeoutWorks) {
+TEST_F(SerialTests, timeoutWorks)
+{
   // Timeout a read, returns an empty string
   string empty = port1->read();
   EXPECT_EQ(empty, string(""));
-  
+
   // Ensure that writing/reading still works after a timeout.
   write(master_fd, "abc\n", 4);
   string r = port1->read(4);
   EXPECT_EQ(r, string("abc\n"));
 }
 
-TEST_F(SerialTests, partialRead) {
+TEST_F(SerialTests, partialRead)
+{
   // Write some data, but request more than was written.
   write(master_fd, "abc\n", 4);
 
   // Should timeout, but return what was in the buffer.
   string empty = port1->read(10);
   EXPECT_EQ(empty, string("abc\n"));
-  
+
   // Ensure that writing/reading still works after a timeout.
   write(master_fd, "abc\n", 4);
   string r = port1->read(4);
@@ -107,11 +114,12 @@ TEST_F(SerialTests, partialRead) {
 
 }  // namespace
 
-int main(int argc, char **argv) {
+int main(int argc, char ** argv)
+{
   try {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
-  } catch (std::exception &e) {
+  } catch (std::exception & e) {
     std::cerr << "Unhandled Exception: " << e.what() << std::endl;
   }
   return 1;
