@@ -1,3 +1,9 @@
+// Copyright 2022 William Woodall.
+//
+// Use of this source code is governed by an MIT-style
+// license that can be found in the LICENSE file or at
+// https://opensource.org/licenses/MIT.
+
 /* To run these tests you need to change the define below to the serial port 
  * with a loop back device attached.
  * 

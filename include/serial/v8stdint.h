@@ -1,3 +1,9 @@
+// Copyright 2022 William Woodall.
+//
+// Use of this source code is governed by an MIT-style
+// license that can be found in the LICENSE file or at
+// https://opensource.org/licenses/MIT.
+
 // This header is from the v8 google project:
 // http://code.google.com/p/v8/source/browse/trunk/include/v8stdint.h
 
