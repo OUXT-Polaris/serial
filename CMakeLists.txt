@@ -19,6 +19,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_XX_FLAGS} -pthread")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
 
 find_package(ament_cmake_auto REQUIRED)
+ament_auto_find_build_dependencies()
 
 if(APPLE)
     find_library(IOKIT_LIBRARY IOKit)
