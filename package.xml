@@ -23,5 +23,8 @@
 
   <test_depend>ouxt_common</test_depend>
   <!--<test_depend>boost</test_depend>-->
-
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 </package>
